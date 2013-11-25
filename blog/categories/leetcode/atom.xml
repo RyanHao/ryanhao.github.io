@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: LeetCode | Happy Coding]]></title>
+  <link href="http://ryanhao.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
+  <link href="http://ryanhao.github.io/"/>
+  <updated>2013-11-25T15:04:10+08:00</updated>
+  <id>http://ryanhao.github.io/</id>
+  <author>
+    <name><![CDATA[Ryan Hao]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode OJ 006 ZigZag Conversion]]></title>
+    <link href="http://ryanhao.github.io/blog/2013/11/24/leetcode-oj-006-zigzag-conversion/"/>
+    <updated>2013-11-24T17:21:00+08:00</updated>
+    <id>http://ryanhao.github.io/blog/2013/11/24/leetcode-oj-006-zigzag-conversion</id>
+    <content type="html"><![CDATA[<blockquote><p><a href="http://oj.leetcode.com/problems/zigzag-conversion/">ZigZag Conversion 曲折转换</a></p></blockquote>
+
+<h3>Description:</h3>
+
+<blockquote><p>The string &ldquo;ABCDEFGHIJKLMNOPQRSTUVWXYZ&rdquo; is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)<img src="http://d.pcs.baidu.com/thumbnail/a9ba33f12fcfe6a7d9e3f315261bce59?fid=1143547140-250528-3948537019&amp;time=1385362695&amp;rt=pr&amp;sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-7irKweMUkN05KRPJ9g9Foc771Qw%3D&amp;expires=8h&amp;r=983511197&amp;size=c850_u580&amp;quality=100" alt="zigzag.png" /><br/>
+And then read line by line: &ldquo;AKUBJLTVCIMSWDHNRXEGOQYFPZ"<br/>
+Write the code that will take a string and make this conversion given a number of rows:<br/>
+string convert(string text, int nRows);<br/>
+convert("ABCDEFGHIJKLMNOPQRSTUVWXYZ&rdquo;, 6) should return &ldquo;AKUBJLTVCIMSWDHNRXEGOQYFPZ&rdquo;.</p></blockquote>
+
+<!--more-->
+
+
+<h3>描述:</h3>
+
+<blockquote><p>字符串"ABCDEFGHIJKLMNOPQRSTUVWXYZ"按给定的行数以zigzag的模式书写，如下图：<br/>
+<img src="http://d.pcs.baidu.com/thumbnail/a9ba33f12fcfe6a7d9e3f315261bce59?fid=1143547140-250528-3948537019&amp;time=1385362695&amp;rt=pr&amp;sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-7irKweMUkN05KRPJ9g9Foc771Qw%3D&amp;expires=8h&amp;r=983511197&amp;size=c850_u580&amp;quality=100" alt="zigzag.png" /><br/>
+然后按行读，得到字符串"AKUBJLTVCIMSWDHNRXEGOQYFPZ"<br/>
+编程实现这种变换。<br/>
+convert(&ldquo;ABCDEFGHIJKLMNOPQRSTUVWXYZ&rdquo;, 6)应返回 &ldquo;AKUBJLTVCIMSWDHNRXEGOQYFPZ"。</p></blockquote>
+
+<h3>思路:</h3>
+
+<blockquote><p>一个向下和斜向上组合在一块称作一个zig，则zigSize = 2*nRow-2<br/>
+特殊情况:当nRows为1时，直接返回原字符串。<br/>
+每个zig的第一行和最后一行只有1个字符，其他行有2个字符。</p></blockquote>
+
+<h3>代码:</h3>
+
+<p>```cpp ZigZag Conversion
+class Solution {
+public:</p>
+
+<pre><code>string convert(string s, int nRows) {
+    // IMPORTANT: Please reset any member data you declared, as
+    // the same Solution instance will be reused for each test case.
+    if (s == "") {
+        return "";
+    } else if (nRows == 1) {
+        return s;
+    }
+    int zigSize = 2 * nRows - 2;
+    char **p = new char *[nRows];
+    int nColumn = 2 * (s.size() / zigSize + 1);
+    for (int i = 0; i &lt; nRows; i++) {
+        p[i] = new char[nColumn];
+        for (int j = 0; j &lt; nColumn; j++) {
+            p[i][j] = '#';
+        }
+    }
+    int row = 0;
+    int column = 0;
+    int j = 0;
+    for (int i = 0; i &lt; s.size(); i++) {
+        j = i % zigSize;
+        if (j &lt; nRows) {
+            row = j;
+        } else {
+            row = zigSize - j;
+        }
+        if (j == 0 || j == nRows - 1) {
+            column = i / zigSize;
+        } else {
+            if (j &lt; nRows) {
+                column = (i / zigSize) * 2;
+            } else {
+                column = (i / zigSize) * 2 + 1;
+            }
+        }
+        p[row][column] = s[i];
+    }
+
+    string result(s.size(), '#');
+    int pResult = 0;
+    for (int i = 0; i &lt; nRows; i++) {
+        for (int j = 0; j &lt; nColumn; j++) {
+            cout &lt;&lt; p[i][j] &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+    }
+    for (int i = 0; i &lt; nRows; i++) {
+        for (int j = 0; j &lt; nColumn; j++) {
+            if (p[i][j] == '#') {
+                break;
+            } else {
+                result[pResult++] = p[i][j];
+            }
+        }
+    }
+    return result;
+}
+</code></pre>
+
+<p>};
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode OJ 005 Longest Palidromic Substring]]></title>
+    <link href="http://ryanhao.github.io/blog/2013/11/23/leetcode-oj-005-longest-palidromic-substring/"/>
+    <updated>2013-11-23T20:35:00+08:00</updated>
+    <id>http://ryanhao.github.io/blog/2013/11/23/leetcode-oj-005-longest-palidromic-substring</id>
+    <content type="html"><![CDATA[<blockquote><p><a href="http://oj.leetcode.com/problems/longest-palindromic-substring/">Longest Palindromic Substring 最长回文子串</a></p></blockquote>
+
+<h3>Description:</h3>
+
+<blockquote><p>Given a string S, find the longest palindromic substring in S. <br/>
+You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.</p></blockquote>
+
+<!--more-->
+
+
+<h3>描述：</h3>
+
+<blockquote><p>给定一个字符串S，找出S中的最长回文子串。<br/>
+你可以假设字符串的最大长度为1000，其中有且只有一个最长回文子串。</p></blockquote>
+
+<h3>思路</h3>
+
+<blockquote><p>Manacher算法</p></blockquote>
+
+<h3>代码</h3>
+
+<p>```cpp Longest Palidromic Substring
+class Solution {
+public:</p>
+
+<pre><code>string longestPalindrome(string s) {
+    // IMPORTANT: Please reset any member data you declared, as
+    // the same Solution instance will be reused for each test case.
+    int longSize = s.size() * 2 + 2;
+    string sLong = string(longSize, '#');
+    sLong[0] = '$';
+    for (int i = 0; i &lt; s.size(); i++) {
+        sLong[i * 2 + 2] = s[i];
+    }
+    int *radi = new int[longSize];
+    for (int i = 0; i &lt; longSize; i++) {
+        radi[i] = 0;
+    }
+
+    int high = 0;
+    int i = 0;
+    int cur = 0;
+
+    for (i = 1; i &lt; longSize; i++) {
+        if (high &gt; i) {
+            radi[i] = min(radi[2 * cur - i], high - i);
+        } else {
+            radi[i] = 1;
+        }
+        while (sLong[i - radi[i]] == sLong[i + radi[i]]) {
+            radi[i]++;
+        }
+        if (i + radi[i] &gt; high) {
+            cur = i;
+            high = i + radi[i];
+        }
+    }
+
+    int max = 1;
+    int pos = 1;
+    for (int i = 1; i &lt; longSize; i++) {
+        if (radi[i] &gt; max) {
+            max = radi[i];
+            pos = i;
+        }
+    }
+
+    int start = 0;
+    int subLen = 0;
+    if (pos % 2 == 0) {
+        pos = (pos - 2) / 2;
+        max = max / 2;
+        subLen = max * 2 - 1;
+    } else {
+        pos = (pos - 3) / 2;
+        max = (max - 1) / 2;
+        subLen = max * 2;
+    }
+    start = pos - max + 1;
+    return s.substr(start, subLen);
+}
+</code></pre>
+
+<p>};
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode OJ 004 Add Two Numbers]]></title>
+    <link href="http://ryanhao.github.io/blog/2013/11/22/leetcode-oj-004-add-two-numbers/"/>
+    <updated>2013-11-22T14:46:00+08:00</updated>
+    <id>http://ryanhao.github.io/blog/2013/11/22/leetcode-oj-004-add-two-numbers</id>
+    <content type="html"><![CDATA[<blockquote><p><a href="http://oj.leetcode.com/problems/add-two-numbers/">Add Two Numbers 两数相加</a></p></blockquote>
+
+<h3>Description:</h3>
+
+<blockquote><p>You are given two linked lists representing two non-negative numbers.<br/>
+The digits are stored in reverse order and each of their nodes contain a single digit.<br/>
+Add the two numbers and return it as a linked list.</p></blockquote>
+
+<!--more-->
+
+
+<h3>描述：</h3>
+
+<blockquote><p>给定两个表示两个非负数的链表。<br/>
+其中数字位按倒序存放，每个链表结点存放一位数字。<br/>
+将这两个数加到一起以链表形式返回。</p></blockquote>
+
+<h3>Input:</h3>
+
+<blockquote><p>(2 &ndash;> 4 &ndash;> 3) + (5 &ndash;> 6 &ndash;> 4)</p></blockquote>
+
+<h3>Output:</h3>
+
+<blockquote><p>7 &ndash;> 0 &ndash;> 8</p></blockquote>
+
+<h3>思路</h3>
+
+<blockquote><ul>
+<li>两次遍历：
+
+<blockquote><p>第一次遍历加在一块，第二次遍历处理进位。</p></blockquote></li>
+<li>一次遍历：
+
+<blockquote><p>用一个变量存放进位。</p></blockquote></li>
+</ul>
+</blockquote>
+
+<h3>代码</h3>
+
+<p>```cpp ListNode
+struct ListNode {</p>
+
+<pre><code>int val;
+ListNode *next;
+ListNode(int x) : val(x), next(NULL) {}
+</code></pre>
+
+<p>};
+```</p>
+
+<ul>
+<li>两次遍历</li>
+</ul>
+
+
+<p>```cpp Add Two Numbers
+class Solution {
+public:</p>
+
+<pre><code>ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+    // IMPORTANT: Please reset any member data you declared, as
+    // the same Solution instance will be reused for each test case.
+    ListNode *l = new ListNode(0);
+    ListNode *p = l;
+    ListNode *temp = NULL;
+    while(l1 &amp;&amp; l2) {
+        temp = new ListNode(l1-&gt;val+l2-&gt;val);
+        p-&gt;next = temp;
+        p = p-&gt;next;
+        l1 = l1-&gt;next;
+        l2 = l2-&gt;next;
+    }
+    while(l1) {
+        temp = new ListNode(l1-&gt;val);
+        p-&gt;next = temp;
+        p = p-&gt;next;
+        l1 = l1-&gt;next;
+    }
+    while(l2) {
+        temp = new ListNode(l2-&gt;val);
+        p-&gt;next = temp;
+        p = p-&gt;next;
+        l2 = l2-&gt;next;
+    }
+    p = l-&gt;next;
+    while(p-&gt;next) {
+        if(p-&gt;val&gt;=10) {
+            p-&gt;val %= 10;
+            p-&gt;next-&gt;val++;
+        }
+        p = p-&gt;next;
+    }
+    if(p-&gt;val&gt;=10) {
+        temp = new ListNode(p-&gt;val/10);
+        p-&gt;val %= 10;
+        p-&gt;next = temp;
+    }
+    return l-&gt;next;
+}
+</code></pre>
+
+<p>};
+```</p>
+
+<ul>
+<li>一次遍历</li>
+</ul>
+
+
+<p>```cpp Add Two Numbers
+class Solution {
+public:</p>
+
+<pre><code>ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+    // IMPORTANT: Please reset any member data you declared, as
+    // the same Solution instance will be reused for each test case.
+    ListNode *l = new ListNode(0);
+    ListNode *p = l;
+    ListNode *temp = NULL;
+    int carry = 0;
+    while(l1 &amp;&amp; l2) {
+        temp = new ListNode((l1-&gt;val+l2-&gt;val+carry)%10);
+        carry = (l1-&gt;val+l2-&gt;val+carry)/10;
+        p-&gt;next = temp;
+        p = p-&gt;next;
+        l1 = l1-&gt;next;
+        l2 = l2-&gt;next;
+    }
+    while(l1) {
+        temp = new ListNode((l1-&gt;val+carry)%10);
+        carry = (l1-&gt;val+carry)/10;
+        p-&gt;next = temp;
+        p = p-&gt;next;
+        l1 = l1-&gt;next;
+    }
+    while(l2) {
+        temp = new ListNode((l2-&gt;val+carry)%10);
+        carry = (l2-&gt;val+carry)/10;
+        p-&gt;next = temp;
+        p = p-&gt;next;
+        l2 = l2-&gt;next;
+    }
+    if(carry) {
+        temp = new ListNode(carry);
+        p-&gt;next = temp;
+    }
+    return l-&gt;next;
+}
+</code></pre>
+
+<p>};
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode OJ 003 Longest Substring Without Repeating Characters]]></title>
+    <link href="http://ryanhao.github.io/blog/2013/11/22/leetcode-oj-003-longest-substring-without-repeating-characters/"/>
+    <updated>2013-11-22T09:01:00+08:00</updated>
+    <id>http://ryanhao.github.io/blog/2013/11/22/leetcode-oj-003-longest-substring-without-repeating-characters</id>
+    <content type="html"><![CDATA[<blockquote><p><a href="http://oj.leetcode.com/problems/longest-substring-without-repeating-characters/">Longest Substring Without Repeating Characters 最长无重复字符的子串</a></p></blockquote>
+
+<h3>Description:</h3>
+
+<blockquote><p>Given a string, find the length of the longest substring without repeating characters.<br/>
+For example, the longest substring without repeating letters for &ldquo;abcabcbb&rdquo; is &ldquo;abc&rdquo;, which the length is 3. For &ldquo;bbbbb&rdquo; the longest substring is &ldquo;b&rdquo;, with the length of 1.</p></blockquote>
+
+<!--more-->
+
+
+<h3>描述：</h3>
+
+<blockquote><p>给定一个字符串，找出其中无重复字符的最长子串的长度。<br/>
+例如，对于"abcabcbb"，无重复字符的最长子串是"abc"，它的长度是3。对于"bbbbb" ，无重复字符的最长子串是"b"，它的长度是1。</p></blockquote>
+
+<h3>思路</h3>
+
+<blockquote><ul>
+<li>简单思路：
+
+<blockquote><p>维护两个指针low和i，i一直向前走，low指向目前无重复字符的子串(<em>不一定是最长</em>)的起始位置。i每读入一个字符，查看其是否在low和i之间有重复，若有则计算目前子串长度是否比之前更长，然后low更新为重复位置+1，这种方法时间复杂度O(n<sup>2</sup>)。</p></blockquote></li>
+<li>更好的思路：
+
+<blockquote><p>维护一个大小为256的记录表table和两个指针low和i，table记录每个已遇到的字符的索引值，i一直向前走，low指向目前无重复字符的子串(<em>不一定是最长</em>)的起始位置。i每读入一个字符，从table中查看该字符是否之前已经出现过，若出现过且原索引在low和i之间，则计算目前子串长度是否比之前更长，然后将low更新为该字符原索引+1，将该字符的索引更新为i，这种方法时间复杂度O(n)。</p></blockquote></li>
+</ul>
+</blockquote>
+
+<h3>代码</h3>
+
+<ul>
+<li>O(n<sup>2</sup>)方法
+<code>cpp Longest Substring Without Repeating Characters
+class Solution {
+public:
+  int lengthOfLongestSubstring(string s) {
+      // IMPORTANT: Please reset any member data you declared, as
+      // the same Solution instance will be reused for each test case.
+      if(s=="") {
+          return 0;
+      }
+      int low = 0;
+      int max = 0;
+      int i=1;
+      for(; i&lt;s.size();i++) {
+          int pos = s.find(s[i], low);
+          if(pos&lt;=i-1) {
+              if(i-low&gt;max) {
+                  max = i-low;
+              }
+              low = pos+1;
+          }
+      }
+      if(i-low&gt;max) {
+          max = i-low;
+      }
+      return max;
+  }
+};
+</code></li>
+<li><p>O(n)方法
+```cpp Longest Substring Without Repeating Characters
+class Solution {
+public:
+  int lengthOfLongestSubstring(string s) {
+      // IMPORTANT: Please reset any member data you declared, as
+      // the same Solution instance will be reused for each test case.
+      if(s==&ldquo;&rdquo;) {
+          return 0;
+      }</p>
+
+<pre><code>  int rTable[256];
+  for(int i=0; i&lt;256; i++) {
+      rTable[i] = -1;
+  }
+
+  int low = -1;
+  int max = 0;
+  int i=0;
+  for(; i&lt;s.size(); i++) {
+      if(rTable[(int)s[i]]&gt;=low) {
+          if(i-low&gt;max) {
+              max = i-low;
+          }
+          low = rTable[(int)s[i]]+1;
+      }
+      rTable[(int)s[i]] = i;
+  }
+
+  if(i-low&gt;max) {
+      max = i-low;
+  }
+
+  return max;
+</code></pre>
+
+<p>  }
+};
+```</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode OJ 002 Median of Two Sorted Arrays]]></title>
+    <link href="http://ryanhao.github.io/blog/2013/11/21/leetcode-oj-002-median-of-two-sorted-arrays/"/>
+    <updated>2013-11-21T20:59:00+08:00</updated>
+    <id>http://ryanhao.github.io/blog/2013/11/21/leetcode-oj-002-median-of-two-sorted-arrays</id>
+    <content type="html"><![CDATA[<blockquote><p><a href="http://oj.leetcode.com/problems/median-of-two-sorted-arrays/">Median of Two Sorted Arrays 两个已排序数组的中值</a></p></blockquote>
+
+<h3>Description:</h3>
+
+<blockquote><p>There are two sorted arrays A and B of size m and n respectively. <br/>
+Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p></blockquote>
+
+<!--more-->
+
+
+<h3>描述：</h3>
+
+<blockquote><p>给定两个已排序的数组A和B，大小分别为m和n。<br/>
+找出这两个数组的中值。<br/>
+要求时间复杂度为O(log (m+n))。</p></blockquote>
+
+<h3>思路</h3>
+
+<blockquote><p>相当于做归并。本题中若m+n为偶数则中值是中间两个数的平均值。</p></blockquote>
+
+<h3>代码</h3>
+
+<p>```cpp Median of Two Sorted Arrays
+class Solution {
+public:</p>
+
+<pre><code>double findMedianSortedArrays(int A[], int m, int B[], int n) {
+    // IMPORTANT: Please reset any member data you declared, as
+    // the same Solution instance will be reused for each test case.
+    int mid = (m+n)/2;
+    int *temp = new int[mid+1];
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    for(; i&lt;m &amp;&amp; j&lt;n &amp;&amp; k&lt;=mid; k++) {
+        if(A[i]&lt;B[j]) {
+            temp[k] = A[i++];
+        } else {
+            temp[k] = B[j++];
+        }
+    }
+
+    if(i==m) {
+        for(; k&lt;=mid; k++) {
+            temp[k] = B[j++];
+        }
+    } else if(j==n) {
+        for(; k&lt;=mid; k++) {
+            temp[k] = A[i++];
+        }
+    }
+    double result = 0;
+    if((m+n)%2 == 0) {
+        result = (temp[mid]+temp[mid-1])/2.0;
+    } else {
+        result = temp[mid]*1.0;
+    }
+
+    delete[] temp;
+    return result;
+}
+</code></pre>
+
+<p>};
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
