@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: LeetCode | Happy Coding]]></title>
+  <title><![CDATA[Category: LeetCode | Ryan Hao]]></title>
   <link href="http://ryanhao.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://ryanhao.github.io/"/>
-  <updated>2013-11-25T15:04:10+08:00</updated>
+  <updated>2013-11-25T15:20:26+08:00</updated>
   <id>http://ryanhao.github.io/</id>
   <author>
     <name><![CDATA[Ryan Hao]]></name>
