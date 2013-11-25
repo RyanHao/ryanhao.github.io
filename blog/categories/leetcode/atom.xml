@@ -4,7 +4,7 @@
   <title><![CDATA[Category: LeetCode | Ryan Hao]]></title>
   <link href="http://ryanhao.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://ryanhao.github.io/"/>
-  <updated>2013-11-25T15:20:26+08:00</updated>
+  <updated>2013-11-25T21:11:15+08:00</updated>
   <id>http://ryanhao.github.io/</id>
   <author>
     <name><![CDATA[Ryan Hao]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode OJ 007 Reverse Integer]]></title>
+    <link href="http://ryanhao.github.io/blog/2013/11/25/leetcode-oj-007-reverse-integer/"/>
+    <updated>2013-11-25T20:12:54+08:00</updated>
+    <id>http://ryanhao.github.io/blog/2013/11/25/leetcode-oj-007-reverse-integer</id>
+    <content type="html"><![CDATA[<blockquote><p><a href="http://oj.leetcode.com/problems/reverse-integer/#">Reverse Integer 整数倒转</a></p></blockquote>
+
+<h3>Description:</h3>
+
+<blockquote><p>Reverse digits of an integer.<br/>
+Example1: x = 123, return 321<br/>
+Example2: x = -123, return -321</p></blockquote>
+
+<h4><em>Have you thought about this?</em></h4>
+
+<blockquote><p>Here are some good questions to ask before coding. Bonus points for you if you have already thought through this!<br/>
+If the integer&rsquo;s last digit is 0, what should the output be? ie, cases such as 10, 100.<br/>
+Did you notice that the reversed integer might overflow? Assume the input is a 32-bit integer,<br/>
+then the reverse of 1000000003 overflows. How should you handle such cases?<br/>
+Throw an exception? Good, but what if throwing an exception is not an option?<br/>
+You would then have to re-design the function (ie, add an extra parameter).</p></blockquote>
+
+<!--more-->
+
+
+<h3>描述:</h3>
+
+<blockquote><p>反转一个整数的数字位。<br/>
+例1: x = 123, return 321<br/>
+例2: x = -123, return -321</p></blockquote>
+
+<h4><em>你有想过吗？</em></h4>
+
+<blockquote><p>以下是在编写代码之前值得想一下的问题，如果你已经想到了，给你一个Yes!<br/>
+如果整数的后几位是0，那么反转之后是多少？比如10，100。<br/>
+你有注意到吗，一些数字反转后会出现溢出现象。<br/>
+假设输入时32字节的整数，那么反转1000000003就会出现溢出，应该怎么处理呢？<br/>
+抛出一个异常？很好，如果不允许抛出异常呢？<br/>
+那么你需要重新设计这个函数了(添加一个额外的参数)。</p></blockquote>
+
+<h3>思路:</h3>
+
+<blockquote><p>先记录输入数字的正负情况，然后将其转换成正数来处理。<br/>
+每次取输入数字的最后一位加到输出结果的后面一位。<br/>
+如果输入为整数，计算出的输出为负数，则出现溢出。</p></blockquote>
+
+<h3>代码:</h3>
+
+<p>```cpp Reverse Integer
+class Solution {
+public:</p>
+
+<pre><code>int reverse(int x) {
+    // IMPORTANT: Please reset any member data you declared, as
+    // the same Solution instance will be reused for each test case.
+    bool positive = true;
+    if(x &lt; 0) {
+        positive = false;
+        x = -x;
+    }
+    int result = 0;
+    while(x) {
+        result = result*10 + x%10;
+        x /= 10;
+    }
+    if(result&lt;0) {
+        return -1;
+    }
+    if(!positive) {
+        result *= -1;
+    }
+    return result;
+}
+</code></pre>
+
+<p>};
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[LeetCode OJ 006 ZigZag Conversion]]></title>
@@ -474,79 +554,6 @@ public:
 ```</p></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[LeetCode OJ 002 Median of Two Sorted Arrays]]></title>
-    <link href="http://ryanhao.github.io/blog/2013/11/21/leetcode-oj-002-median-of-two-sorted-arrays/"/>
-    <updated>2013-11-21T20:59:00+08:00</updated>
-    <id>http://ryanhao.github.io/blog/2013/11/21/leetcode-oj-002-median-of-two-sorted-arrays</id>
-    <content type="html"><![CDATA[<blockquote><p><a href="http://oj.leetcode.com/problems/median-of-two-sorted-arrays/">Median of Two Sorted Arrays 两个已排序数组的中值</a></p></blockquote>
-
-<h3>Description:</h3>
-
-<blockquote><p>There are two sorted arrays A and B of size m and n respectively. <br/>
-Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p></blockquote>
-
-<!--more-->
-
-
-<h3>描述：</h3>
-
-<blockquote><p>给定两个已排序的数组A和B，大小分别为m和n。<br/>
-找出这两个数组的中值。<br/>
-要求时间复杂度为O(log (m+n))。</p></blockquote>
-
-<h3>思路</h3>
-
-<blockquote><p>相当于做归并。本题中若m+n为偶数则中值是中间两个数的平均值。</p></blockquote>
-
-<h3>代码</h3>
-
-<p>```cpp Median of Two Sorted Arrays
-class Solution {
-public:</p>
-
-<pre><code>double findMedianSortedArrays(int A[], int m, int B[], int n) {
-    // IMPORTANT: Please reset any member data you declared, as
-    // the same Solution instance will be reused for each test case.
-    int mid = (m+n)/2;
-    int *temp = new int[mid+1];
-    int i = 0;
-    int j = 0;
-    int k = 0;
-    for(; i&lt;m &amp;&amp; j&lt;n &amp;&amp; k&lt;=mid; k++) {
-        if(A[i]&lt;B[j]) {
-            temp[k] = A[i++];
-        } else {
-            temp[k] = B[j++];
-        }
-    }
-
-    if(i==m) {
-        for(; k&lt;=mid; k++) {
-            temp[k] = B[j++];
-        }
-    } else if(j==n) {
-        for(; k&lt;=mid; k++) {
-            temp[k] = A[i++];
-        }
-    }
-    double result = 0;
-    if((m+n)%2 == 0) {
-        result = (temp[mid]+temp[mid-1])/2.0;
-    } else {
-        result = temp[mid]*1.0;
-    }
-
-    delete[] temp;
-    return result;
-}
-</code></pre>
-
-<p>};
-```</p>
 ]]></content>
   </entry>
   

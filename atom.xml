@@ -4,7 +4,7 @@
   <title><![CDATA[Ryan Hao]]></title>
   <link href="http://ryanhao.github.io/atom.xml" rel="self"/>
   <link href="http://ryanhao.github.io/"/>
-  <updated>2013-11-25T15:20:26+08:00</updated>
+  <updated>2013-11-25T21:11:15+08:00</updated>
   <id>http://ryanhao.github.io/</id>
   <author>
     <name><![CDATA[Ryan Hao]]></name>
@@ -12,6 +12,107 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LeetCode OJ 007 Reverse Integer]]></title>
+    <link href="http://ryanhao.github.io/blog/2013/11/25/leetcode-oj-007-reverse-integer/"/>
+    <updated>2013-11-25T20:12:54+08:00</updated>
+    <id>http://ryanhao.github.io/blog/2013/11/25/leetcode-oj-007-reverse-integer</id>
+    <content type="html"><![CDATA[<blockquote><p><a href="http://oj.leetcode.com/problems/reverse-integer/#">Reverse Integer 整数倒转</a></p></blockquote>
+
+<h3>Description:</h3>
+
+<blockquote><p>Reverse digits of an integer.<br/>
+Example1: x = 123, return 321<br/>
+Example2: x = -123, return -321</p></blockquote>
+
+<h4><em>Have you thought about this?</em></h4>
+
+<blockquote><p>Here are some good questions to ask before coding. Bonus points for you if you have already thought through this!<br/>
+If the integer&rsquo;s last digit is 0, what should the output be? ie, cases such as 10, 100.<br/>
+Did you notice that the reversed integer might overflow? Assume the input is a 32-bit integer,<br/>
+then the reverse of 1000000003 overflows. How should you handle such cases?<br/>
+Throw an exception? Good, but what if throwing an exception is not an option?<br/>
+You would then have to re-design the function (ie, add an extra parameter).</p></blockquote>
+
+<!--more-->
+
+
+<h3>描述:</h3>
+
+<blockquote><p>反转一个整数的数字位。<br/>
+例1: x = 123, return 321<br/>
+例2: x = -123, return -321</p></blockquote>
+
+<h4><em>你有想过吗？</em></h4>
+
+<blockquote><p>以下是在编写代码之前值得想一下的问题，如果你已经想到了，给你一个Yes!<br/>
+如果整数的后几位是0，那么反转之后是多少？比如10，100。<br/>
+你有注意到吗，一些数字反转后会出现溢出现象。<br/>
+假设输入时32字节的整数，那么反转1000000003就会出现溢出，应该怎么处理呢？<br/>
+抛出一个异常？很好，如果不允许抛出异常呢？<br/>
+那么你需要重新设计这个函数了(添加一个额外的参数)。</p></blockquote>
+
+<h3>思路:</h3>
+
+<blockquote><p>先记录输入数字的正负情况，然后将其转换成正数来处理。<br/>
+每次取输入数字的最后一位加到输出结果的后面一位。<br/>
+如果输入为整数，计算出的输出为负数，则出现溢出。</p></blockquote>
+
+<h3>代码:</h3>
+
+<figure class='code'><figcaption><span>Reverse Integer</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">reverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// IMPORTANT: Please reset any member data you declared, as</span>
+</span><span class='line'>        <span class="c1">// the same Solution instance will be reused for each test case.</span>
+</span><span class='line'>        <span class="kt">bool</span> <span class="n">positive</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="n">positive</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="n">x</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span>
+</span><span class='line'>          <span class="n">x</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">result</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">positive</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="n">result</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[LeetCode OJ 006 ZigZag Conversion]]></title>
