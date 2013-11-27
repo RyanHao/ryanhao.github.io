@@ -43,7 +43,7 @@ If no valid conversion could be performed, a zero value is returned. If the corr
 
 
 ###代码:
-```cpp Reverse Integer
+```cpp String to Integer(atoi)
 class Solution {
 public:
     int atoi(const char *str) {
