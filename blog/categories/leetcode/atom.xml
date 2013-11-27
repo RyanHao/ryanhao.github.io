@@ -4,7 +4,7 @@
   <title><![CDATA[Category: LeetCode | Ryan Hao]]></title>
   <link href="http://ryanhao.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://ryanhao.github.io/"/>
-  <updated>2013-11-27T19:39:13+08:00</updated>
+  <updated>2013-11-27T21:55:12+08:00</updated>
   <id>http://ryanhao.github.io/</id>
   <author>
     <name><![CDATA[Ryan Hao]]></name>
@@ -74,7 +74,7 @@ If no valid conversion could be performed, a zero value is returned. If the corr
 
 <h3>代码:</h3>
 
-<p>```cpp Reverse Integer
+<p>```cpp String to Integer(atoi)
 class Solution {
 public:</p>
 
