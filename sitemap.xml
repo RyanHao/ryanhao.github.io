@@ -35,8 +35,14 @@
         <lastmod>2013-11-25T21:10:13+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://ryanhao.github.io/blog/2013/11/27/leetcode-oj-008-string-to-integer-atoi/
+        </loc>
+        <lastmod>2013-11-27T14:33:05+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://ryanhao.github.io/about/</loc>
-        <lastmod>2013-11-26T10:13:39+08:00</lastmod>
+        <lastmod>2013-11-26T20:50:53+08:00</lastmod>
     </url>
     <url>
         <loc>http://ryanhao.github.io/assets/bootstrap/about.html</loc>
@@ -60,7 +66,7 @@
     </url>
     <url>
         <loc>http://ryanhao.github.io/assets/bootstrap/</loc>
-        <lastmod>2013-11-25T21:10:13+08:00</lastmod>
+        <lastmod>2013-11-27T14:33:05+08:00</lastmod>
     </url>
     <url>
         <loc>http://ryanhao.github.io/assets/bootstrap/javascript.html</loc>
@@ -68,11 +74,11 @@
     </url>
     <url>
         <loc>http://ryanhao.github.io/blog/archives/</loc>
-        <lastmod>2013-11-25T21:10:13+08:00</lastmod>
+        <lastmod>2013-11-27T14:33:05+08:00</lastmod>
     </url>
     <url>
         <loc>http://ryanhao.github.io/</loc>
-        <lastmod>2013-11-25T21:10:13+08:00</lastmod>
+        <lastmod>2013-11-27T14:33:05+08:00</lastmod>
     </url>
     <url>
         <loc>http://ryanhao.github.io/robots.txt</loc>
