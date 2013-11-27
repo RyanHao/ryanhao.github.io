@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "LeetCode OJ 008 String to Integer (atoi)"
+title: "LeetCode OJ 008 String to Integer(atoi)"
 date: 2013-11-27 14:07:03 +0800
 comments: true
 categories: LeetCode
