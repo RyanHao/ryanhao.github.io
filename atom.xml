@@ -4,7 +4,7 @@
   <title><![CDATA[Ryan Hao]]></title>
   <link href="http://ryanhao.github.io/atom.xml" rel="self"/>
   <link href="http://ryanhao.github.io/"/>
-  <updated>2013-11-27T14:34:26+08:00</updated>
+  <updated>2013-11-27T19:39:13+08:00</updated>
   <id>http://ryanhao.github.io/</id>
   <author>
     <name><![CDATA[Ryan Hao]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[LeetCode OJ 008 String to Integer (atoi)]]></title>
+    <title type="html"><![CDATA[LeetCode OJ 008 String to Integer(atoi)]]></title>
     <link href="http://ryanhao.github.io/blog/2013/11/27/leetcode-oj-008-string-to-integer-atoi/"/>
     <updated>2013-11-27T14:07:03+08:00</updated>
     <id>http://ryanhao.github.io/blog/2013/11/27/leetcode-oj-008-string-to-integer-atoi</id>
